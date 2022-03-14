@@ -11,10 +11,17 @@ public class SuperHeroController : ControllerBase
         new SuperHero
         {
             Id = 1,
-            Name = "Spider Man",
-            FirstName = "Peter",
-            LastName = "Parker",
-            Place = "New York"
+            Name = "Batman",
+            FirstName = "Bruce",
+            LastName = "Wayne",
+            Place = "Gotham City"
+        },
+        new SuperHero {
+            Id = 2,
+            Name = "Iron Man",
+            FirstName = "Tony",
+            LastName = "Stark",
+            Place = "Long Island"
         }
     };
     
@@ -24,6 +31,15 @@ public class SuperHeroController : ControllerBase
         return Ok(heroes);
     }
 
+    [HttpGet("{heroId:int}")]
+    public async Task<ActionResult<SuperHero>> Get([FromRoute]int heroId)
+    {
+        var hero = heroes.Find(hero => hero.Id.Equals(heroId));
+        if (hero == null)
+            return BadRequest("Hero not found");
+        return Ok(hero);
+    }
+    
     [HttpPost]
     public async Task<ActionResult<List<SuperHero>>> AddHero([FromBody]SuperHero hero)
     {
