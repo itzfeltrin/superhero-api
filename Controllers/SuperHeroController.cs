@@ -35,9 +35,9 @@ public class SuperHeroController : ControllerBase
     [HttpGet("{heroId:int}")]
     public async Task<ActionResult<SuperHero>> Get([FromRoute] int heroId)
     {
+        if (heroId <= 0) return BadRequest("Invalid Id");
         var hero = heroes.Find(hero => hero.Id.Equals(heroId));
-        if (hero == null)
-            return BadRequest("Hero not found");
+        if (hero == null) return NotFound("Hero not found");
         return Ok(hero);
     }
 
@@ -51,9 +51,9 @@ public class SuperHeroController : ControllerBase
     [HttpPut("{heroId:int}")]
     public async Task<ActionResult<List<SuperHero>>> UpdateHero(int heroId, [FromBody] SuperHero request)
     {
+        if (heroId <= 0) return BadRequest("Invalid Id");
         var hero = heroes.Find(hero => hero.Id.Equals(heroId));
-        if (hero == null)
-            return BadRequest("Hero not found");
+        if (hero == null) return NotFound("Hero not found");
         hero.Name = request.Name;
         hero.FirstName = request.FirstName;
         hero.LastName = request.LastName;
@@ -64,9 +64,9 @@ public class SuperHeroController : ControllerBase
     [HttpDelete("{heroId:int}")]
     public async Task<ActionResult<List<SuperHero>>> DeleteHero(int heroId)
     {
+        if (heroId <= 0) return BadRequest("Invalid Id");
         var hero = heroes.Find(hero => hero.Id.Equals(heroId));
-        if (hero == null)
-            return BadRequest("Hero not found");
+        if (hero == null) return NotFound("Hero not found");
         heroes.Remove(hero);
         return heroes;
     }
