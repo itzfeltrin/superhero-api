@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="89df2fd0-5afe-4117-8cf1-cc4ac8fbd64d" name="superheroesdb@localhost Mapping">
+      <data-sources db="8a3e41f7-93b6-44cb-a4bb-42d9136dc38b" ddl="2e663e4b-9526-41ed-beed-8b7ec90acf90" />
+    </mapping>
+  </component>
+</project>
